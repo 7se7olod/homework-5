@@ -3,7 +3,7 @@
     <a href="#" class="logo">
       <img src="./assets/images/macaroons.png" alt="macarons">
     </a>
-    <nav class="header__menu" id="menu">
+    <nav class="header__menu" id="menu" [ngClass]="isOpenMenu ? 'open' : null">
       <div class="close">
         <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
              x="0px" y="0px"
@@ -19,18 +19,18 @@
       </div>
       <ul class="header__list">
         <li>
-          <a href="#products" class="header__link">Пироженки</a>
+          <a href="#products" class="header__link" (click)="onScrollAndCloseMenu(element)">Пироженки</a>
         </li>
         <li>
-          <a href="#about-company" class="header__link">О нас</a>
+          <a href="#about-company" class="header__link" (click)="onScrollAndCloseMenu(element)">О нас</a>
         </li>
         <li>
-          <a href="#order" class="header__link">Оформить заказ</a>
+          <a href="#order" class="header__link" (click)="onScrollAndCloseMenu(element)">Оформить заказ</a>
         </li>
       </ul>
     </nav>
     <div class="phone-number header__phone">{{phoneNumberHeader}}</div>
-    <div class="header__burger" id="burger">
+    <div class="header__burger" id="burger" (click)="isOpenMenu = !isOpenMenu">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="40px" height="22px">

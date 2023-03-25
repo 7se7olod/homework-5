@@ -7,4 +7,13 @@ import {Component, Input} from '@angular/core';
 })
 export class HeaderComponent {
   @Input() phoneNumberHeader: string = '';
+  public element: HTMLElement | null = null;
+  public isOpenMenu = false;
+
+  public onScrollAndCloseMenu(element: HTMLElement | null): void {
+    this.isOpenMenu = false;
+    if (element) {
+      element.scrollIntoView({behavior:'smooth', block: 'start'});
+    }
+  }
 }

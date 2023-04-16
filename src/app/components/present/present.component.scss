@@ -1,0 +1,90 @@
+.present {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 2;
+}
+
+.present__text {
+  order: 1;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #feefee;
+  font-size: 15px;
+  color: rgb(119, 10, 29);
+  box-sizing: border-box;
+  padding: 15px 12px 15px 10px;
+  border: 2px solid #770a1d;
+  border-radius: 10px;
+  max-width: 172px;
+  margin-bottom: -150px;
+  opacity: 0;
+  transition-property: all;
+  transition-duration: 1s;
+}
+
+.present__text::before, .present__text::after {
+  transform: rotate(180deg);
+  content: '';
+  position: absolute;
+  right: -24px;
+  top: calc(50% - 10px);
+  border: 10px solid transparent;
+  border-right: 12px solid #770a1d;
+}
+
+.present__text::after {
+  border-right: 12px solid #feefee;
+  right: -21px;
+  top: calc(50% - 10px);
+}
+
+.present__products-count-in-cart {
+  position: absolute;
+  right: 2px;
+  top: 2px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 1px solid #821328;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #feefee;
+  color: #821328;
+}
+
+.present__logo {
+  order: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 90px;
+  width: 90px;
+  border-radius: 50%;
+  background: radial-gradient(at center, #71081e, #d7485c);
+  transition-property: all;
+  transition-duration: 0.5s;
+  cursor: pointer;
+}
+
+.present__logo:hover {
+  box-shadow: 0 0 12px 3px rgba(130, 19, 40, 0.5);
+}
+
+.present__logo:hover ~ .present__text {
+  opacity: 1;
+  margin-bottom: 0;
+}
+
+.present__logo-img {
+  padding-right: 10px;
+  width: 45px;
+  height: 45px;
+}

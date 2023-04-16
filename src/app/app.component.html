@@ -6,7 +6,7 @@
       <div class="main__text">
         Побалуйте себя и своих близких самыми вкусными и ароматными домашними пироженками Macaroon!
       </div>
-      <button class="button button__select" (click)="scrollToElement(productsElement)">Выбрать макарун</button>
+      <button class="button button__select" (click)="scrollToElement(productsElement)" appBackgroundButton>Выбрать макарун</button>
     </div>
     <div class="main__image">
       <img src="../assets/images/main-macaroons.png" alt="box-macaroons" class="main__image-img">
@@ -33,13 +33,8 @@
       </div>
     </div>
     <div class="history__items">
-      <div class="history__item" *ngFor="let advantage of advantages; let i = index">
-        <div class="history__number-circle">
-          <div class="history__number">{{i + 1}}</div>
-        </div>
-        <div class="history__item-title">{{advantage.title}}</div>
-        <div class="history__item-text">{{advantage.description}}</div>
-      </div>
+      <app-advantages *ngFor="let advantage of advantages; let i = index"
+                      [advantage]="advantage" [advantageIndex]="i + 1"></app-advantages>
     </div>
   </div>
 </section>
@@ -48,19 +43,7 @@
     <h2 class="products__title">Выберите свой макарун</h2>
     <div class="products__items">
       <div class="product__item-box" *ngFor="let product of products; let i = index">
-        <div class="products__item">
-          <div class="products__image-item">
-            <img src="./assets/images/{{product.image}}" alt="macaroon-{{i + 1}}" class="products__img">
-          </div>
-          <div class="products__text-item">{{product.title}}</div>
-          <div class="products__order-item">
-            <div class="products__parameters">
-              <div class="products__price-count">{{product.count}} шт.</div>
-              <div class="products__price-count">{{product.price}} руб.</div>
-            </div>
-            <button class="button products__button" (click)="onOrder(product.title, orderElement)">Заказать</button>
-          </div>
-        </div>
+        <app-product [product]="product" [productIndex]="i + 1" (addToCartEvent)="onOrder(product.title, orderElement)"></app-product>
       </div>
     </div>
   </div>
@@ -90,18 +73,11 @@
         <input type="text" placeholder="Ваше имя" class="order__input order__your-name">
         <input type="tel" placeholder="+375 (__) ___ - __ - __" class="order__input order__your-phone">
       </label>
-      <button type="submit" class="button order__button">Оформить заказ</button>
+      <button type="submit" class="button order__button" appBackgroundButton>Оформить заказ</button>
       <img src="./assets/images/strawberry-little.png" alt="strawberry-little" class="order__strawberry-little">
     </form>
   </div>
 </section>
-<div class="present" [@fadeOut]="showPresent">
-  <div class="present__logo">
-    <img src="./assets/images/present.png" alt="present" class="present__logo-img">
-  </div>
-  <div class="present__text">
-    Оформите заказ и получите подарок!
-  </div>
-</div>
+<app-present *ngIf="showPresent"></app-present>
 <app-footer [phoneNumberFooter]="phoneNumber"
             [instagramLinkCompanyFooter]="instagramCompanyLink"/>

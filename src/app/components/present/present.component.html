@@ -1,0 +1,7 @@
+<div class="present">
+  <div class="present__logo">
+    <img src="./assets/images/cart.png" alt="cart" class="present__logo-img">
+  </div>
+  <div class="present__products-count-in-cart">{{cartService.getCommonCount()}}</div>
+  <div class="present__text">{{cartService.getPrice() | currencyPipe}}</div>
+</div>

@@ -29,7 +29,7 @@
         </li>
       </ul>
     </nav>
-    <div class="phone-number header__phone">{{phoneNumberHeader}}</div>
+    <div class="phone-number header__phone">{{phoneNumberHeader | phoneBelFormat}}</div>
     <div class="header__burger" id="burger" (click)="isOpenMenu = !isOpenMenu">
       <svg
         xmlns="http://www.w3.org/2000/svg"

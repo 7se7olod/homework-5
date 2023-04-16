@@ -1,0 +1,13 @@
+ <div class="products__item">
+    <div class="products__image-item">
+      <img src="./assets/images/{{product.image}}" alt="macaroon-{{productIndex}}" class="products__img">
+    </div>
+    <div class="products__text-item">{{product.title}}</div>
+    <div class="products__order-item">
+      <div class="products__parameters">
+        <div class="products__price-count">{{product.count}} шт.</div>
+        <div class="products__price-count">{{product.price | currencyPipe}}</div>
+      </div>
+      <button class="button products__button" (click)="addProductToCard()" appBackgroundButton>Заказать</button>
+    </div>
+ </div>

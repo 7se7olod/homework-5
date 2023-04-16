@@ -2,6 +2,9 @@ import {Component} from '@angular/core';
 import {AdvantageType} from "./types/advantage.type";
 import {ProductType} from "./types/product.type";
 import {fadeOutAnimation} from "./components/animations/animation-present";
+import {ProductsService} from "./services/products.service";
+import {TotalAmountService} from "./services/total-amount.service";
+import {AdvantagesService} from "./services/advantages.service";
 
 @Component({
   selector: 'app-root',
@@ -11,66 +14,26 @@ import {fadeOutAnimation} from "./components/animations/animation-present";
 })
 export class AppComponent {
   public productOrder: string = '';
-  public advantages: AdvantageType[] = [
-    {
-      title: 'Лучшие продукты',
-      description: 'Мы честно готовим макаруны только из натуральных и качественных продуктов. Мы не используем консерванты, ароматизаторы и красители.'
-    },
-    {
-      title: 'Много вкусов',
-      description: 'Наша задача – предоставить вам широкое разнобразие вкусов. Вы удивитесь, но у нас более 70 вкусов пироженок.'
-    },
-    {
-      title: 'Бисквитное тесто',
-      description: 'Все пирожные готовятся на бисквитном тесте с качественным сливочным маслом 82,5%. В составе нет маргарина и дрожжей!'
-    },
-    {
-      title: 'Честный продукт',
-      description: 'Вкус, качество и безопасность наших пирогов подтверждена декларацией о соответствии, которую мы получили 22.06.2016 г.'
-    },
-  ];
-  public products: ProductType[] = [
-    {
-      image: 'red-macaron.png',
-      title: 'Макарун с малиной',
-      count: 3,
-      price: 650,
-    },
-    {
-      image: 'yellow-macaron.png',
-      title: 'Макарун с манго',
-      count: 1,
-      price: 310,
-    },
-    {
-      image: 'crem-macaron.png',
-      title: 'Пирог с ванилью',
-      count: 1,
-      price: 285,
-    },
-    {
-      image: 'green-macaron.png',
-      title: 'Пирог с фисташками',
-      count: 1,
-      price: 300,
-    },
-  ]
+  public products: ProductType[] = [];
+  public advantages: AdvantageType[] = [];
   public showPresent: boolean = true;
-  public phoneNumber: string = '+375 (29) 368-98-69';
+  public phoneNumber: string = '375293689869';
   public instagramCompanyLink = 'https://instagram.com';
+  public productsInCartCount: number = 0;
 
-  constructor() {
-    // отображение и скрытие блока с подарком можно было сделать через *ngIf,
-    // но в этом случае я не знаю как реализовать анимацию на удаление блока, поэтому решил сделать просто анимацию скрытия  =)
-    const that: AppComponent = this;
-    setInterval(function () {
-      that.showPresent = !that.showPresent;
-    }, 5000);
+  constructor(private productsService: ProductsService,
+              private cartService: TotalAmountService,
+              private advantageService: AdvantagesService) {}
+
+  ngOnInit() {
+    this.products = this.productsService.getProducts();
+    this.advantages = this.advantageService.getAdvantages()
   }
 
   public onOrder(product: string, element: HTMLElement): void {
     this.scrollToElement(element);
     this.productOrder = product.toUpperCase();
+    alert(`${product} добавлен в корзину!`);
   }
 
   public scrollToElement(element: HTMLElement): void {
